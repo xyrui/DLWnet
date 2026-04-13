@@ -7,7 +7,7 @@
 
 [Paper]()
 
-![Flowchat](./imgs/main_pic.png)
+![Flowchat](./imgs/main.png)
 Figure 1: The flowchart of the proposed method (PLRDiff). First, we estimate the coefficient matrix $E$ from the LRHS image. Second, the LRHS image, PAN image and the
 coefficient matrix $E$ served as conditions are sent into a discretization of an SDE, where
 we reconstruct the base tensor $\mathcal{A}$ by gradually sampling through a series of parameterized
