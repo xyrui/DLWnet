@@ -16,10 +16,10 @@ Figure 2: The solution X to a denoising problem is implicitly related to three e
 ![Flowchat3](./imgs/theory.png)
 Our main theory about the model-level DLWnet generalization.
 
-![Flowchat4](./plotW.jpg)
+![Flowchat4](./imgs/plotW.jpg)
 Figure 3: Visual comparison of the weights W predicted by different types of DLWnets. There are two observations: 1) All seven DLWnets can recognize the regions with heavier noise and assign smaller weights to them, clearly demonstrating the denoising assistance capability of DLWnet. 2) DLWnets additionally extract certain image structures, and the extracted structures vary across different DLWnets.
 
-![Flowchat5](./DLWnn.png)
+![Flowchat5](./imgs/DLWnn.png)
 Figure 4: Denoising results (pesudo-color image) of DLW-NN on image “BGU 0522-1136” of ICVL dataset. The noisy type is “mixture”.
 
 
