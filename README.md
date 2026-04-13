@@ -7,53 +7,25 @@
 
 [Paper]()
 
-![Flowchat](./imgs/main.png)
-Figure 1: The flowchart of the proposed method (PLRDiff). First, we estimate the coefficient matrix $E$ from the LRHS image. Second, the LRHS image, PAN image and the
-coefficient matrix $E$ served as conditions are sent into a discretization of an SDE, where
-we reconstruct the base tensor $\mathcal{A}$ by gradually sampling through a series of parameterized
-distributions. Finally, the predicted $\mathcal{A}$ and $E$ are multiplied to form the desired HRHS
-image.
+![Flowchat1](./imgs/fig1.png)
+Figure 1: Overview of the proposed DLW scheme. The left part illustrates the training of the weight function hθ (DLWnet). This process consists of a lower-level problem solving T heterogeneous image denoising problems (all using the same hθ) and an upper-level problem minimizing the distance between the restored image X(θ) and the ground-truth image X. The right part shows the application of the trained hθ. In this stage, hθ predicts the weight for a noisy image, which is then used in a target image denoising model, helping the model achieve better performance.
 
-## 1. Load pretrained Model 
-Pretrained diffusion model can be downloaded from
+![Flowchat2](./imgs/mapping.png)
+Figure 2: The solution X to a denoising problem is implicitly related to three elements. They are the noisy image Y, the network parameter θ (because W= hθ(Y)) and the regularization term R(X). This fact is the basis of the proposed DLW scheme.
 
-[https://github.com/wgcban/ddpm-cd?tab=readme-ov-file#7-links-to-download-pre-trained-models](https://github.com/wgcban/ddpm-cd?tab=readme-ov-file#7-links-to-download-pre-trained-models)
+![Flowchat3](./imgs/theory.png)
+Our main theory about the model-level DLWnet generalization.
 
-*Retraining or finetuning this model is not mandatory. 
+![Flowchat4](./plotW.jpg)
+Figure 3: Visual comparison of the weights W predicted by different types of DLWnets. There are two observations: 1) All seven DLWnets can recognize the regions with heavier noise and assign smaller weights to them, clearly demonstrating the denoising assistance capability of DLWnet. 2) DLWnets additionally extract certain image structures, and the extracted structures vary across different DLWnets.
 
-## 2. Dataset
-### Reproduce the results
-All datasets used in this work can be found in [Google Driver](https://drive.google.com/drive/folders/161ExMLMeGTyckdyAGdGjN0hKe3ONemkD?usp=drive_link) or [BaiduCloud](https://pan.baidu.com/s/1LO43relnFtt9l-Tz0BhTpA?pwd=op0f). 
+![Flowchat5](./DLWnn.png)
+Figure 4: Denoising results (pesudo-color image) of DLW-NN on image “BGU 0522-1136” of ICVL dataset. The noisy type is “mixture”.
 
-These datasets can be directly used to reproduce the results presented in the manuscript.
 
-### 2.1. Origianl dataset links
-Here are the links to the original datasets. You can download them, crop the data and generate your own datasets if interested.
+## Training
+### Run the code
+run ``python3 train_<modelname>.py`` to train different DLWnets.
 
-Chikusei: [https://naotoyokoya.com/Download.html](https://naotoyokoya.com/Download.html)
-
-Houston: [https://hyperspectral.ee.uh.edu/?page id=459](https://hyperspectral.ee.uh.edu/?page_id=459)
-
-Pavia: [https://github.com/liangjiandeng/HyperPanCollection](https://github.com/liangjiandeng/HyperPanCollection)
-
-### 2.2. How do we generate the datasets
-We generate our Chikusei and Houston datasets by 'data/generate_data.m'. Pavia can be directly downloaded from the above link for use. 
-
-## 3. Testing
-### 3.1. Run the code
-run ``python3 demo_syn.py -res opt``
-
-Before you running the script, please first download the pre-trained diffusion model, put it to your file and change the --resume in demo_syn.py.
-
-### 3.2. Important Options
-
--dn: dataname,str. e.g. 'Chikusei'. The dataset should contain "HRMS", "LRMS" and "PAN". 
-
-**-krtype: int. Set 0 for the first time in order to estimate kernel and srf. Set 1 if you have already save them in './estKR'.**
-
--res: str. Set 'opt' for estimating the residual and 'no' for R=0.
-
-Other options include eta1, eta2, scale, ks, step, accstep. Please refer to demo_syn.py. 
-
-## 4. Connections
+## Connections
 <a href="mailto:xyrui.aca@gmail.com">xyrui.aca@gmail.com</a> 
