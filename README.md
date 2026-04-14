@@ -5,7 +5,7 @@
 
 <p align="center">
 
-Paper: [arXiv](https://arxiv.org/abs/2301.06081)
+Paper: [arXiv](https://arxiv.org/abs/2301.06081](https://arxiv.org/pdf/2301.06081)
 
 ## 1. Brief introduction of this work
 ### 1.1 Overview
