@@ -5,7 +5,7 @@
 
 <p align="center">
 
-[Paper]()
+[Paper](https://arxiv.org/abs/2301.06081)
 
 ## 1. Brief introduction of this work
 ### 1.1 Overview
